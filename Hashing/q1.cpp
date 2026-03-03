@@ -36,50 +36,48 @@
             int hashfunction(int key){
                 return key%size;
             }
-        void insert(int roll, string name, int marks)
-    {
-        int start = hashfunction(roll);   // original hash index
-        int index = start;
+        
+            void insert(int roll, string name, int marks){
+             
+            int index = hashfunction(roll);
 
-        // Case 1: Empty slot at hash index
-        if(arr[index].roll == -1)
-        {
-            arr[index].roll = roll;
-            arr[index].name = name;
-            arr[index].marks = marks;
-            return;
+            // Case 1: Empty slot at hash index
+            if(arr[index].roll == -1)
+            {
+                arr[index].roll = roll;
+                arr[index].name = name;
+                arr[index].marks = marks;
+                return;
+            }
+
+            // Case 2: Collision
+
+            int i = index;
+
+            // Find empty slot using linear probing
+            while(arr[i].roll != -1)
+                i = (i + 1) % size;
+
+            // Store record at empty location
+            arr[i].roll = roll;
+            arr[i].name = name;
+            arr[i].marks = marks;
+
+            
+            // Move to last element of SAME hash group
+            while(arr[index].chain != -1)
+                index = arr[index].chain;
+
+            arr[index].chain = i;
         }
 
-        // Case 2: Collision
+                void display(){
+                    cout<<"Name\tRoll\tMarks\tChain"<<endl;
+                    for(int i=0;i<size;i++){
+                    cout<<arr[i].name<<"\t"<<arr[i].roll<<"\t"<<arr[i].marks<<"\t"<<arr[i].chain<<endl;
 
-        int i = index;
-
-        // Find empty slot using linear probing
-        while(arr[i].roll != -1)
-            i = (i + 1) % size;
-
-        // Store record at empty location
-        arr[i].roll = roll;
-        arr[i].name = name;
-        arr[i].marks = marks;
-
-        // Now attach to correct chain
-        int temp = start;
-
-        // Move to last element of SAME hash group
-        while(arr[temp].chain != -1)
-            temp = arr[temp].chain;
-
-        arr[temp].chain = i;
-    }
-
-            void display(){
-                cout<<"Name\tRoll\tMarks\tChain"<<endl;
-                for(int i=0;i<size;i++){
-                cout<<arr[i].name<<"\t"<<arr[i].roll<<"\t"<<arr[i].marks<<"\t"<<arr[i].chain<<endl;
-
+                    }
                 }
-            }
 
 
 
