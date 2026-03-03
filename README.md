@@ -1,6 +1,6 @@
 # 📚 DSA Coursework
 
-Collection of solved Data Structures and Algorithms (DSA) assignments of my college course, implemented in **C++** and **Python**.
+Collection of solved Data Structures and Algorithms (DSA) assignments of my college 
 
 ---
 
