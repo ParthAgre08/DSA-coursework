@@ -60,11 +60,12 @@ int main()
 {
     hashtable h;
     h.initialize();
-    h.insert(53);
-    h.insert(5);
-    h.insert(24);
-    h.insert(97);
-    h.insert(33);
+    h.insert(79);
+    h.insert(69);
+    h.insert(98);
+    h.insert(72);
+    h.insert(14);
+    h.insert(50);
     h.display();
 
     return 0;
