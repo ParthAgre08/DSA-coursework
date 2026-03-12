@@ -4,44 +4,46 @@
 
 #include<iostream>
 using namespace std;
+
 class hashtable{
     public:
-    int size;
-    int * arr;
-
-    hashtable(){
-        size = 10;
-        arr = new int[size];
-    }
+    int size =10;
+    int * arr = new int[size];
 
     void initialize(){
-        for(int i =0;i<size;i++){
+        for(int i=0;i<size;i++){
             arr[i] = -1;
         }
     }
 
-    int hashfunction(int key){
+    int h(int key){
         return key%10;
     }
 
     void insert(int key){
-        int index = hashfunction(key);
+        int index = h(key);
         if(arr[index] == -1){
-            arr[index] = key;
+            arr[index] =key;
         }
         else{
-            while(arr[index] != -1){
-                index = (index+1)%10;
+            while(arr[index] !=-1){
+                index = (index+1)% size;
+                if(arr[index] == -1){
+                    arr[index] = key;
+                    return;
+                }
             }
-            arr[index] = key;
+            cout<<"Table is full!!";
         }
     }
+
     void display(){
-       for(int i=0;i<size;i++){
-        cout<<i<<" : "<<arr[i]<<endl;
-       } 
+        for(int i=0;i<size;i++){
+            cout<<i<<" : "<<arr[i]<<endl;
+        }
     }
 
+    
 };
 int main(){
 hashtable h;
